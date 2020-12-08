@@ -1,12 +1,13 @@
 const axios = require('axios');
 
-async function restore (data, url) {
+async function restore (data, url, options) {
   const promises = data.map(async document => {
     const postResponse = await axios({
       url,
       method: 'post',
       data: document,
-      validateStatus: () => true
+      validateStatus: () => true,
+      ...options
     });
 
     const result = {

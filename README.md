@@ -30,6 +30,14 @@ restractor \
   --source-ca=./certs/ca.cert.pem \
   https://localhost:8061/services \
   ./services.json
+
+# Use authenticated tls on destination
+restractor \
+  --dest-key=./certs/localhost.privkey.pem \
+  --dest-cert=./certs/localhost.cert.pem \
+  --dest-ca=./certs/ca.cert.pem \
+  https://localhost:8061/services \
+  ./services.json
 ```
 
 ### Extracting data

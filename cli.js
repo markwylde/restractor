@@ -32,6 +32,16 @@ async function main () {
     });
   }
 
+  const destOptions = {};
+  if (argv['dest-cert']) {
+    destOptions.httpsAgent = new https.Agent({
+      key: fs.readFileSync(path.resolve(process.cwd(), argv['dest-key'])),
+      cert: fs.readFileSync(path.resolve(process.cwd(), argv['dest-cert'])),
+      ca: [fs.readFileSync(path.resolve(process.cwd(), argv['dest-ca']))],
+      requestCert: true
+    });
+  }
+
   let sourceData;
   if (source.type === 'file') {
     sourceData = await fs.promises.readFile(source.value, 'utf8').then(JSON.parse);
@@ -42,7 +52,7 @@ async function main () {
   if (destination.type === 'file') {
     await fs.promises.writeFile(destination.value, JSON.stringify(sourceData, null, 2));
   } else {
-    const restoreResult = await restore(sourceData, destination.value);
+    const restoreResult = await restore(sourceData, destination.value, destOptions);
 
     if (restoreResult.find(result => result instanceof Error)) {
       throw new Error('could not insert all documents');
