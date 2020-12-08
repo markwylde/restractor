@@ -1,0 +1,33 @@
+{
+  "name": "restractor",
+  "version": "1.0.0",
+  "description": "Extract all the data from a collecting in a REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "c8 node test"
+  },
+  "bin": {
+    "restractor": "cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markwylde/restractor.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/markwylde/restractor/issues"
+  },
+  "homepage": "https://github.com/markwylde/restractor#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "final-stream": "^2.0.3"
+  },
+  "devDependencies": {
+    "basictap": "^1.1.11",
+    "c8": "^7.3.5",
+    "json-server": "^0.16.3",
+    "onefakerest": "^1.0.0"
+  }
+}
