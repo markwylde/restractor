@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-async function fetchPage (url, pageNumber = 1, data = []) {
+async function fetchPage (url, options, pageNumber = 1, data = []) {
   try {
     const previousUrl = url.replace('{page}', pageNumber - 1);
     const currentUrl = url.replace('{page}', pageNumber);
@@ -9,14 +9,14 @@ async function fetchPage (url, pageNumber = 1, data = []) {
       return data;
     }
 
-    const response = await axios(url.replace('{page}', pageNumber));
+    const response = await axios(url.replace('{page}', pageNumber), options);
     data = data.concat(response.data);
 
     if (response.data.length === 0) {
       return data;
     }
 
-    return fetchPage(url, pageNumber + 1, data);
+    return fetchPage(url, options, pageNumber + 1, data);
   } catch (error) {
     console.log(error);
     if (error.response.status === 404 && pageNumber > 1) {
@@ -27,8 +27,8 @@ async function fetchPage (url, pageNumber = 1, data = []) {
   }
 }
 
-async function extract (url) {
-  return fetchPage(url);
+async function extract (url, options) {
+  return fetchPage(url, options);
 }
 
 module.exports = extract;

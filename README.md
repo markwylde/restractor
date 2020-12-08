@@ -22,6 +22,14 @@ restractor notes.json http://localhost:42597/notes1
 
 # Download from a rest endpoint and post to another rest endpoint
 restractor http://localhost:42597/notes http://localhost:42597/notes1
+
+# Use authenticated tls on source
+restractor \
+  --source-key=./certs/localhost.privkey.pem \
+  --source-cert=./certs/localhost.cert.pem \
+  --source-ca=./certs/ca.cert.pem \
+  https://localhost:8061/services \
+  ./services.json
 ```
 
 ### Extracting data
