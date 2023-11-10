@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/markwylde/restractor#readme",
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^1.6.0",
     "final-stream": "^2.0.3",
     "minimist": "^1.2.5"
   },
